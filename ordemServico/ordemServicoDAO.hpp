@@ -17,6 +17,7 @@ public:
     OrdemDeServico buscarOrdemDeServicoPorNumero(int numeroOrdem);
     std::vector<OrdemDeServico> listarOrdensDeServico();
     void exibirInformacoesOrdemDeServico(const OrdemDeServico& ordem);
+    OrdemDeServico buscarOrdemDeServicoPorIddoPedido(int idPedido);
 };
 
 #endif

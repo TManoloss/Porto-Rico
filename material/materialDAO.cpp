@@ -36,12 +36,24 @@ void MaterialDAO::atualizarMaterial(int id, const Material& novoMaterial) {
 }
 
 void MaterialDAO::imprimirMaterialDetalhado(const Material& material) const {
+    std::cout << "\n----------------------------------------\n";
     std::cout << "Detalhes do Material:" << std::endl;
     std::cout << "ID: " << material.getId() << std::endl;
     std::cout << "Descrição: " << material.getDescricao() << std::endl;
     std::cout << "Fornecedor: " << material.getFornecedor().getNome() << std::endl;
+    std::cout << "\nMaterial listado com sucesso\n";
 }
 
 std::vector<Material> MaterialDAO::listarMateriais() const {
     return this->materiais;
 }
+
+void MaterialDAO::buscarMateriaisPorProduto(int produtoId, std::vector<Material>& materiaisEncontrados) const {
+    for(const Material& material : this->materiais){
+        if(material.getProdutoDestino().getId() == produtoId){  // Corrigido para usar getProdutoDestino()
+            materiaisEncontrados.push_back(material);
+        }
+    }
+}
+
+

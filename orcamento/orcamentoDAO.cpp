@@ -47,6 +47,7 @@ vector<Orcamento> OrcamentoDAO::listarOrcamentos() const{
     return orcamentos;
 }
 
+
 void OrcamentoDAO::imprimirOrcamentoDetalhado(const Orcamento& orcamento){
     std::cout <<"------------------------\n"
               << "ID: " << orcamento.getId() << "\n"
@@ -61,5 +62,4 @@ void OrcamentoDAO::imprimirOrcamentoDetalhado(const Orcamento& orcamento){
                   << "Produto Nome: " << produto.getDescricao() << "\n"
                   << "------------------------\n";
     }
-    cout << "------------------------\n";
 }

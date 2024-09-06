@@ -40,3 +40,16 @@ void FuncionarioDAO::atualizarFuncionario(string cpf, const Funcionario& funcion
 vector<Funcionario> FuncionarioDAO::listarFuncionarios() const{
     return funcionarios;
 }
+
+void FuncionarioDAO::listarFuncionariosDetalhados() const{
+    for(int i = 0; i < funcionarios.size(); i++){
+        std::cout << "\n----------------------------------------\n";
+        std::cout << "\nNome: " << funcionarios[i].getNome();
+        std::cout << "\nEmail: " << funcionarios[i].getEmail();
+        std::cout << "\nTelefone: " << funcionarios[i].getTelefone();
+        std::cout << "\nEndereco: " << funcionarios[i].getEndereco();
+    }
+    std::cout <<"\nFuncionario listado com sucessos\n" ;  
+}
+
+

@@ -477,7 +477,14 @@ void Admin::gerenciarOrcamentos() {
         std::cout << "Digite o ID do Orçamento a ser deletado: ";
         std::cin >> id;
         orcamentoMgr.removerOrcamento(id);
-    }   
+    } 
+    else if(subOpcao == 5){
+        int idImpresso;
+        std::cout << "Qual o id do orcamento a ser impresso?";
+        std::cin >> idImpresso;
+        Orcamento  orcamentoImprimido = orcamentoMgr.buscarOrcamento(idImpresso);
+        orcamentoMgr.imprimirOrcamentoDetalhado(orcamentoImprimido);
+    }
     else {
         std::cout << "Opção inválida!\n";
     }
@@ -491,6 +498,7 @@ void Admin::gerenciarPedidos() {
     std::cout << "2. Listar Pedidos\n";
     std::cout << "3. Atualizar Pedido\n";
     std::cout << "4. Deletar Pedido\n";
+    std::cout << "5. Listar Pedidos Detalhados\n";  
     std::cout << "Escolha uma sub-opção: ";
     std::cin >> subOpcao;
 
@@ -550,6 +558,12 @@ void Admin::gerenciarPedidos() {
         std::cin >> id;
         pedidoMgr.deletarPedido(id);
     }
+    else if(subOpcao == 5){
+        int idImpresso;
+        std::cout << "Qual o id do pedido a ser impresso?";
+        std::cin >> idImpresso;
+        pedidoMgr.exibirInformacoesPedido(idImpresso);
+    }
     else {
         std::cout << "Opção inválida!\n";
     }
@@ -563,6 +577,7 @@ void Admin::gerenciarOrdensDeServico() {
     std::cout << "2. Listar Ordens de Serviço\n";
     std::cout << "3. Atualizar Ordem de Serviço\n";
     std::cout << "4. Deletar Ordem de Serviço\n";
+    std::cout << "5. Listar Ordem de Serviço Detalhada\n";
     std::cout << "Escolha uma sub-opção: ";
     std::cin >> subOpcao;
 
@@ -581,6 +596,9 @@ void Admin::gerenciarOrdensDeServico() {
         
         Pedido pedido = pedidoMgr.buscarPedidoPorNumero(idPedido);
         Produto produto = produtoMgr.buscarProduto(idProduto);
+
+        // Chama o método para buscar materiais por produto
+        MaterialDAO::getInstance().buscarMateriaisPorProduto(idProduto, materiais);
 
         OrdemDeServico novaOrdem(pedido, descricao, idPedido, produto, materiais);
         osMgr.criarOrdemDeServico(novaOrdem);
@@ -605,6 +623,8 @@ void Admin::gerenciarOrdensDeServico() {
         Pedido pedido = pedidoMgr.buscarPedidoPorNumero(idPedido);
         Produto produto = produtoMgr.buscarProduto(idProduto);
 
+        // Chama o método para buscar materiais por produto
+        MaterialDAO::getInstance().buscarMateriaisPorProduto(idProduto, materiais);
 
         OrdemDeServico atualizada(pedido, descricao, idPedido, produto, materiais);
         osMgr.atualizarOrdemDeServico(atualizada);
@@ -614,6 +634,13 @@ void Admin::gerenciarOrdensDeServico() {
         std::cout << "Digite o ID da Ordem de Serviço a ser deletada: ";
         std::cin >> id;
         osMgr.deletarOrdemDeServico(id);
+    }
+    else if(subOpcao == 5){
+        int idImpresso;
+        std::cout << "Qual o id do pedido da ordem de serviço a ser impresso?";
+        std::cin >> idImpresso;
+        OrdemDeServico ordemImpresso = osMgr.buscarOrdemDeServicoPorIddoPedido(idImpresso);
+        osMgr.exibirInformacoesOrdemDeServico(ordemImpresso);
     }
     else {
         std::cout << "Opção inválida!\n";

@@ -70,3 +70,16 @@ void OrdemServicoDAO::exibirInformacoesOrdemDeServico(const OrdemDeServico& orde
         cout << "Ordem de Serviço não encontrada!\n";
     }
 }
+
+
+OrdemDeServico OrdemServicoDAO::buscarOrdemDeServicoPorIddoPedido(int idPedido) {
+    for (const auto& ordem : ordensDeServico) {
+        if (ordem.getPedido() == idPedido) {
+            return ordem;  // Retorna a ordem de serviço encontrada
+        }
+    }
+    cout << "Ordem de Serviço não encontrada!\n";  // Mensagem de erro
+    return OrdemDeServico();  // Retorna uma nova instância se não encontrada
+}
+
+

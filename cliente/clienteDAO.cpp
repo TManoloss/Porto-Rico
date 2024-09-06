@@ -49,6 +49,7 @@ vector<Cliente> ClienteDAO::listarClientes() {
 
 void ClienteDAO::listarClientesDetalhados() {  // Correção do nome
     for(const auto& cliente : clientes) {
+        std::cout << "\n----------------------------------------\n";
         std::cout << "\nNome: " << cliente.getNome();
         std::cout << "\nEmail: " << cliente.getEmail();
         std::cout << "\nTelefone: " << cliente.getTelefone();

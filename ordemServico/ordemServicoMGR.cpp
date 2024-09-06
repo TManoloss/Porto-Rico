@@ -24,3 +24,7 @@ std::vector<OrdemDeServico> OrdemServicoMGR::listarOrdensDeServico() {
 void OrdemServicoMGR::exibirInformacoesOrdemDeServico(const OrdemDeServico& ordem) {
     ordemServicoDAO.exibirInformacoesOrdemDeServico(ordem);
 }
+
+OrdemDeServico OrdemServicoMGR::buscarOrdemDeServicoPorIddoPedido(int idPedido) {
+    return ordemServicoDAO.buscarOrdemDeServicoPorIddoPedido(idPedido);
+}

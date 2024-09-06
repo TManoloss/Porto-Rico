@@ -15,5 +15,6 @@ class FuncionarioDAO{
         Funcionario buscarFuncionario(string cpf) const;
         void atualizarFuncionario(string cpf, const Funcionario& funcionario);
         vector<Funcionario> listarFuncionarios() const;
+        void listarFuncionariosDetalhados() const;
 };
 #endif

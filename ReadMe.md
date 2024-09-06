@@ -27,6 +27,7 @@ O sistema permite as seguintes operações:
 5. **Gerenciar Orçamentos**: Cadastrar, atualizar, deletar e listar orçamentos.
 6. **Gerenciar Pedidos**: Cadastrar, atualizar, deletar e listar pedidos.
 7. **Gerenciar Ordens de Serviço**: Cadastrar, atualizar, deletar e listar ordens de serviço.
+8. **Mockar Dados**: É possível inserir dados pré-prontos utilizando a função de mockar dados.
 
 ## Como Usar
 
@@ -35,7 +36,7 @@ O sistema permite as seguintes operações:
    g++ -std=c++11 main.cpp cliente/*.cpp fornecedor/*.cpp produto/*.cpp material/*.cpp orcamento/*.cpp pedido/*.cpp ordemServico/*.cpp adm/*.cpp mocker/*.cpp -o sistema && ./sistema
    ```
 2. **Execução**: Execute o arquivo gerado para iniciar o sistema.
-3. **Interação**: Siga as instruções no console para navegar pelas opções do sistema.
+3. **Interação**: Siga as instruções no console para navegar pelas opções do sistema. O login e a senha padrão para acesso administrativo são ambos "adm".
 
 ## Dependências
 

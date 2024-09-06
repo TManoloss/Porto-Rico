@@ -60,6 +60,8 @@ vector<Fornecedor> FornecedorDAO::listarFornecedores() {
 
 void FornecedorDAO::listarFornecedoresDetalhados() {
     for (const auto& fornecedor : fornecedores) {
+                cout << "----------------------------------------\n";
+
         cout << "ID: " << fornecedor.getId() << endl;
         cout << "Nome: " << fornecedor.getNome() << endl;
         cout << "CNPJ: " << fornecedor.getCnpj() << endl;
@@ -69,8 +71,8 @@ void FornecedorDAO::listarFornecedoresDetalhados() {
         cout << "Cidade: " << fornecedor.getCidade() << endl;
         cout << "Estado: " << fornecedor.getEstado() << endl;
         cout << "CEP: " << fornecedor.getCep() << endl;
-        cout << "----------------------------------------\n";
     }
+    cout << "\nFornecedores listados com sucesso!\n";
 }   
 
 

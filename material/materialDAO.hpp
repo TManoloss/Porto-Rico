@@ -2,6 +2,7 @@
 #define MATERIAL_DAO_HPP
 
 #include "material.hpp"
+#include "../produto/produto.hpp"
 #include <vector>
 using std::vector;
 
@@ -17,5 +18,6 @@ class MaterialDAO{
         void atualizarMaterial(int id, const Material& material);
         void imprimirMaterialDetalhado(const Material& material) const;
         std::vector<Material> listarMateriais() const;
+        void buscarMateriaisPorProduto(int produtoId, std::vector<Material>& materiaisEncontrados) const;
 };          
 #endif
