@@ -12,7 +12,12 @@ using std::vector;
 class ProdutoManager{
     private:
         ProdutoDAO produtoDAO;
+        ProdutoManager(): produtoDAO(ProdutoDAO::getInstance()){}   
     public:
+        static ProdutoManager& getInstance(){
+            static ProdutoManager instance;
+            return instance;
+        }
         void adicionarProduto(const Produto& produto);
         void atualizarProduto(const Produto& produto);
         void removerProduto(int id);

@@ -3,6 +3,12 @@
 #include <vector>
 using std::cout;
 
+
+OrdemServicoDAO& OrdemServicoDAO::getInstance() {
+    static OrdemServicoDAO instance;  // Cria a instância uma única vez
+    return instance;  // Retorna a referência à instância
+}
+
 void OrdemServicoDAO::inserirOrdemDeServico(const OrdemDeServico& ordem) {
     ordensDeServico.push_back(ordem);
     cout << "Ordem de Serviço inserida com sucesso!\n";
@@ -50,8 +56,7 @@ std::vector<OrdemDeServico> OrdemServicoDAO::listarOrdensDeServico() {
     return ordensDeServico;
 }
 
-void OrdemServicoDAO::exibirInformacoesOrdemDeServico(int numeroOrdem) {
-    OrdemDeServico ordem = buscarOrdemDeServicoPorNumero(numeroOrdem);
+void OrdemServicoDAO::exibirInformacoesOrdemDeServico(const OrdemDeServico& ordem) {
     if (ordem.getPedido() != 0) { 
         std::cout << "\nDetalhes da Ordem de Serviço:\n";
         std::cout << "Número da Ordem de Serviço: " << ordem.getPedido() << "\n";

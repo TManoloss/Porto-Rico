@@ -8,7 +8,9 @@ using std::vector;
 class OrcamentoDAO{
     private:
         vector<Orcamento> orcamentos;
+        OrcamentoDAO() {};
     public:
+        static OrcamentoDAO& getInstance();
         void adicionarOrcamento(const Orcamento& orcamento);
         void removerOrcamento(int id);
         Orcamento buscarOrcamento(int id) const;

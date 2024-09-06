@@ -1,5 +1,6 @@
 #include "fornecedorMGR.hpp"
 
+
 void FornecedorMGR::cadastrarFornecedor(const Fornecedor& fornecedor) {
     fornecedorDAO.cadastrarFornecedor(fornecedor);
 }

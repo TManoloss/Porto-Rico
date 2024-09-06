@@ -1,8 +1,6 @@
 #include "materialMGR.hpp"
 
-MaterialMGR::MaterialMGR(){
-    this->materialDAO = MaterialDAO();
-}
+
 
 void MaterialMGR::adicionarMaterial(const Material& material){
     this->materialDAO.adicionarMaterial(material);

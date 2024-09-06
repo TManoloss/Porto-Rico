@@ -9,6 +9,7 @@ class FuncionarioDAO{
     private:
         vector<Funcionario> funcionarios;
     public:
+    static FuncionarioDAO& getInstance();
         void adicionarFuncionario(const Funcionario& funcionario);
         void removerFuncionario(string cpf);
         Funcionario buscarFuncionario(string cpf) const;

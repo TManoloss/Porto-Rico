@@ -2,6 +2,11 @@
 #include <iostream>
 #include <algorithm>
 
+MaterialDAO& MaterialDAO::getInstance() {
+    static MaterialDAO instance;  // Cria a instância uma única vez
+    return instance;  // Retorna a referência à instância
+}
+
 void MaterialDAO::adicionarMaterial(const Material& material) {
     this->materiais.push_back(material);
 }

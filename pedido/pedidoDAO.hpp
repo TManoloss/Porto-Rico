@@ -8,8 +8,10 @@ using std::vector;
 class PedidoDAO {
 private:
     vector<Pedido> pedidos; 
+    PedidoDAO() {};
 
 public:
+    static PedidoDAO& getInstance();
     void inserirPedido(const Pedido& pedido);
     void atualizarPedido(const Pedido& pedido);
     void deletarPedido(int numPedido);

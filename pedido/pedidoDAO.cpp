@@ -5,6 +5,11 @@
 using std::vector;
 using std::cout;
 
+PedidoDAO& PedidoDAO::getInstance() {
+    static PedidoDAO instance;  // Cria a instância uma única vez
+    return instance;  // Retorna a referência à instância
+}   
+
 void PedidoDAO::inserirPedido(const Pedido& pedido){
     this->pedidos.push_back(pedido);
     cout << "Pedido inserido com sucesso!\n";

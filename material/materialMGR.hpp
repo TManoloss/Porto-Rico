@@ -7,8 +7,12 @@
 class MaterialMGR{
     private:
         MaterialDAO materialDAO;
+        MaterialMGR(): materialDAO(MaterialDAO::getInstance()){}
     public:
-        MaterialMGR();
+    static MaterialMGR& getInstance(){
+        static MaterialMGR instance;
+        return instance;
+    }   
         void adicionarMaterial(const Material& material);
         void removerMaterial(int id);
         Material buscarMaterial(int id) const;

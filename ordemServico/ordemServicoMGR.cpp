@@ -20,7 +20,7 @@ OrdemDeServico OrdemServicoMGR::buscarOrdemDeServicoPorNumero(int numeroOrdem) {
 std::vector<OrdemDeServico> OrdemServicoMGR::listarOrdensDeServico() {
     return ordemServicoDAO.listarOrdensDeServico();
 }
-
-void OrdemServicoMGR::exibirInformacoesOrdemDeServico(int numeroOrdem) {
-    ordemServicoDAO.exibirInformacoesOrdemDeServico(numeroOrdem);
+    
+void OrdemServicoMGR::exibirInformacoesOrdemDeServico(const OrdemDeServico& ordem) {
+    ordemServicoDAO.exibirInformacoesOrdemDeServico(ordem);
 }

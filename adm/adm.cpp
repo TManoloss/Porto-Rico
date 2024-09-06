@@ -5,7 +5,7 @@
 using std::vector;
 
 Admin::Admin(const std::string& login, const std::string& senha) 
-: login(login), senha(senha) {}
+: login(login), senha(senha), clienteMgr(ClienteMGR::getInstance()), fornecedorMgr(FornecedorMGR::getInstance()), produtoMgr(ProdutoManager::getInstance()), materialMgr(MaterialMGR::getInstance()), orcamentoMgr(OrcamentoMgr::getInstance()), pedidoMgr(PedidoMGR::getInstance()), ordemServicoMgr(OrdemServicoMGR::getInstance()), mocker(Mocker::getInstance()) {}
 
 bool Admin::autenticar(const std::string& login, const std::string& senha) {
     return this->login == login && this->senha == senha;
@@ -40,6 +40,10 @@ OrdemServicoMGR& Admin::getOrdemServicoMgr() {
     return ordemServicoMgr;
 }
 
+Mocker& Admin::getMocker() {
+    return mocker;
+}
+
 void Admin::gerenciarSistema() {
     int opcao;
     do {
@@ -52,9 +56,10 @@ void Admin::gerenciarSistema() {
         std::cout << "6. Gerenciar Pedidos\n";
         std::cout << "7. Gerenciar Ordens de Serviço\n";
         std::cout << "8. Sair\n";
+        std::cout << "9. Mockar Dados\n";
         std::cout << "Escolha uma opção: ";
         std::cin >> opcao;
-
+        
         switch(opcao) {
             case 1:
                 gerenciarClientes();
@@ -80,6 +85,9 @@ void Admin::gerenciarSistema() {
             case 8:
                 std::cout << "Encerrando o sistema. Até mais!\n";
                 break;
+            case 9:
+                getMocker().mockData();
+                break;
             default:
                 std::cout << "Opção inválida! Por favor, tente novamente.\n";
                 break;
@@ -88,7 +96,8 @@ void Admin::gerenciarSistema() {
 }
 
 void Admin::gerenciarClientes() {
-    ClienteMGR& clienteMgr = getClienteMgr();
+    ClienteMGR& clienteMgr = ClienteMGR::getInstance();
+
     int subOpcao;
     std::cout << "\n-- Gerenciar Clientes --\n";
     std::cout << "1. Cadastrar Cliente\n";
@@ -167,7 +176,7 @@ void Admin::gerenciarClientes() {
 }
 
 void Admin::gerenciarFornecedores() {
-    FornecedorMGR& fornecedorMgr = getFornecedorMgr();
+    FornecedorMGR& fornecedorMgr = FornecedorMGR::getInstance();
     int subOpcao;
     std::cout << "\n-- Gerenciar Fornecedores --\n";
     std::cout << "1. Cadastrar Fornecedor\n";
@@ -245,7 +254,7 @@ void Admin::gerenciarFornecedores() {
 }
 
 void Admin::gerenciarProdutos() {
-    ProdutoManager& produtoMgr = getProdutoMgr();
+    ProdutoManager& produtoMgr = ProdutoManager::getInstance();
     int subOpcao;
     std::cout << "\n-- Gerenciar Produtos --\n";
     std::cout << "1. Cadastrar Produto\n";
@@ -312,7 +321,7 @@ void Admin::gerenciarProdutos() {
 }
 
 void Admin::gerenciarMateriais() {
-    MaterialMGR& materialMgr = getMaterialMgr();
+    MaterialMGR& materialMgr = MaterialMGR::getInstance();
     int subOpcao;
     std::cout << "\n-- Gerenciar Materiais --\n";
     std::cout << "1. Cadastrar Material\n";
@@ -374,8 +383,8 @@ void Admin::gerenciarMateriais() {
 }
 
 void Admin::gerenciarOrcamentos() {
-    OrcamentoMgr& orcamentoMgr = getOrcamentoMgr();
-    ProdutoManager& produtoMgr = getProdutoMgr();
+    OrcamentoMgr& orcamentoMgr = OrcamentoMgr::getInstance();
+    ProdutoManager& produtoMgr = ProdutoManager::getInstance();
     int subOpcao;
     std::cout << "\n-- Gerenciar Orçamentos --\n";
     std::cout << "1. Cadastrar Orçamento\n";
@@ -468,14 +477,14 @@ void Admin::gerenciarOrcamentos() {
         std::cout << "Digite o ID do Orçamento a ser deletado: ";
         std::cin >> id;
         orcamentoMgr.removerOrcamento(id);
-    }
+    }   
     else {
         std::cout << "Opção inválida!\n";
     }
 }
 
 void Admin::gerenciarPedidos() {
-    PedidoMGR& pedidoMgr = getPedidoMgr();
+    PedidoMGR& pedidoMgr = PedidoMGR::getInstance();
     int subOpcao;
     std::cout << "\n-- Gerenciar Pedidos --\n";
     std::cout << "1. Cadastrar Pedido\n";
@@ -486,9 +495,16 @@ void Admin::gerenciarPedidos() {
     std::cin >> subOpcao;
 
     if(subOpcao == 1) {
+        std::cout << "Ultimos orçamentos cadastrados: " << std::endl;
+        orcamentoMgr.listarOrcamentos();
+        std::cout << "Digite o ID do Orçamento: ";
+        int idOrcamento;
+        std::cin >> idOrcamento;
+        std::cin.ignore();
+        Orcamento orcamento = orcamentoMgr.buscarOrcamento(idOrcamento);
         int numPedido;
         std::string  status, enderecoServico, materiais, cliente;
-        Orcamento orcamento;
+        
         std::cout << "Digite o Numero do Pedido: ";
         std::cin >> numPedido;
         std::cin.ignore();
@@ -540,7 +556,7 @@ void Admin::gerenciarPedidos() {
 }
 
 void Admin::gerenciarOrdensDeServico() {
-    OrdemServicoMGR& osMgr = getOrdemServicoMgr();
+    OrdemServicoMGR& osMgr = OrdemServicoMGR::getInstance();
     int subOpcao;
     std::cout << "\n-- Gerenciar Ordens de Serviço --\n";
     std::cout << "1. Cadastrar Ordem de Serviço\n";

@@ -9,7 +9,9 @@ using std::vector;
 class ProdutoDAO{
     private:
         vector<Produto> produtos;
+        ProdutoDAO() {};
     public:
+        static ProdutoDAO& getInstance();
         void gravarProduto(const Produto& produto);
         Produto buscarProduto(const string& descricao);
         void inserirProduto(const Produto& produto);

@@ -1,5 +1,10 @@
 #include "orcamentoDAO.hpp"
 
+OrcamentoDAO& OrcamentoDAO::getInstance() {
+    static OrcamentoDAO instance;  // Cria a instância uma única vez
+    return instance;  // Retorna a referência à instância
+}
+
 void OrcamentoDAO::adicionarOrcamento(const Orcamento& orcamento){
     
     orcamentos.push_back(orcamento);

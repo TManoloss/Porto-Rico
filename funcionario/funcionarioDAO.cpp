@@ -1,8 +1,9 @@
 #include "funcionarioDAO.hpp"
 
-FuncionarioDAO::FuncionarioDAO(){
-    Funcionario f1("Sophia Lima", "1234567890", "sophialima@gmail.com", "44 9999", "Rua 1", "Sao Paulo", "SP", "12345678");  
-    funcionarios.push_back(f1);   
+
+FuncionarioDAO& FuncionarioDAO::getInstance() {
+    static FuncionarioDAO instance;  // Cria a instância uma única vez
+    return instance;  // Retorna a referência à instância
 }
 
 void FuncionarioDAO::adicionarFuncionario(const Funcionario& funcionario){

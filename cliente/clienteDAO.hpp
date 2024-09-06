@@ -8,16 +8,15 @@ using std::vector;
 class ClienteDAO{
     private:
         vector<Cliente> clientes;
+        ClienteDAO() {};  // Construtor privado para Singleton
     public:
-        ClienteDAO();
+        static ClienteDAO& getInstance();  // Método Singleton
         void cadastrarCliente(const Cliente& cliente);
         Cliente buscarCliente(const int& id);
         void atualizarCliente(const Cliente& cliente);
         void deletarCliente(const int& id);
         vector<Cliente> listarClientes();
-        void listarCLientesDetalhados();
+        void listarClientesDetalhados();  // Correção do nome
 };
 
-
-
-#endif 
+#endif

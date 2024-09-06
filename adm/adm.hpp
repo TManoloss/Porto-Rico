@@ -9,6 +9,7 @@
 #include "../orcamento/orcamentoMGR.hpp"
 #include "../pedido/pedidoMGR.hpp"
 #include "../ordemServico/ordemServicoMGR.hpp"
+#include "../mocker/mocker.hpp"
 
 class Admin {
 private:
@@ -22,6 +23,7 @@ private:
     OrcamentoMgr orcamentoMgr;
     PedidoMGR pedidoMgr;
     OrdemServicoMGR ordemServicoMgr;
+    Mocker mocker;
 
 public:
     Admin(const std::string& login = "adm", const std::string& senha = "adm");
@@ -36,6 +38,7 @@ public:
     OrcamentoMgr& getOrcamentoMgr();
     PedidoMGR& getPedidoMgr();
     OrdemServicoMGR& getOrdemServicoMgr();
+    Mocker& getMocker();
 
     // Método para gerenciar o sistema com menu interativo
     void gerenciarSistema();

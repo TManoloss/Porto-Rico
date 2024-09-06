@@ -7,7 +7,12 @@
 class PedidoMGR{
     private:
         PedidoDAO pedidoDAO;
+        PedidoMGR(): pedidoDAO(PedidoDAO::getInstance()){}
     public:
+        static PedidoMGR& getInstance(){
+            static PedidoMGR instance;
+            return instance;
+        }
         void criarPedido(const Pedido& pedido);
         void atualizarPedido(const Pedido& pedido);
         void deletarPedido(int numPedido);

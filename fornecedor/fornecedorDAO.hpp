@@ -9,9 +9,10 @@ using std::vector;
 class FornecedorDAO{
     private:
         vector<Fornecedor> fornecedores;
+        FornecedorDAO() {};
 
     public:
-        FornecedorDAO();
+    static FornecedorDAO& getInstance();
         void cadastrarFornecedor(const Fornecedor& fornecedor);
         Fornecedor buscarFornecedor(const int& id);
         void atualizarFornecedor(const Fornecedor& fornecedor);

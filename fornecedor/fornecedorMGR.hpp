@@ -9,8 +9,12 @@
 class FornecedorMGR {
     private:
         FornecedorDAO fornecedorDAO;
-
+        FornecedorMGR(): fornecedorDAO(FornecedorDAO::getInstance()){}
     public:
+    static FornecedorMGR& getInstance(){
+        static FornecedorMGR instance;
+        return instance;
+    }
         void cadastrarFornecedor(const Fornecedor& fornecedor);
         Fornecedor buscarFornecedor(const int& id);
         void atualizarFornecedor(const Fornecedor& fornecedor);

@@ -7,14 +7,19 @@
 class OrdemServicoMGR {
 private:
     OrdemServicoDAO ordemServicoDAO;
+    OrdemServicoMGR(): ordemServicoDAO(OrdemServicoDAO::getInstance()){}
 
 public:
+    static OrdemServicoMGR& getInstance(){
+        static OrdemServicoMGR instance;
+        return instance;
+    }
     void criarOrdemDeServico(const OrdemDeServico& ordem);
     void atualizarOrdemDeServico(const OrdemDeServico& ordem);
     void deletarOrdemDeServico(int numeroOrdem);
     OrdemDeServico buscarOrdemDeServicoPorNumero(int numeroOrdem);
     std::vector<OrdemDeServico> listarOrdensDeServico();
-    void exibirInformacoesOrdemDeServico(int numeroOrdem);
+    void exibirInformacoesOrdemDeServico(const OrdemDeServico& ordem);
 };
 
 #endif 

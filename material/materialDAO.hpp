@@ -8,7 +8,9 @@ using std::vector;
 class MaterialDAO{
     private:
         vector<Material> materiais;
+        MaterialDAO() {};
     public:
+        static MaterialDAO& getInstance();
         void adicionarMaterial(const Material& material);
         void removerMaterial(int id);
         Material buscarMaterial(int id) const;

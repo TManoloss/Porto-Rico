@@ -6,7 +6,12 @@
 class FuncionarioMGR{
     private:
         FuncionarioDAO funcionarioDAO;
+        FuncionarioMGR(): funcionarioDAO(FuncionarioDAO::getInstance()){}
     public:
+    static FuncionarioMGR& getInstance(){
+        static FuncionarioMGR instance;
+        return instance;
+    }   
         void adicionarFuncionario(const Funcionario& funcionario);
         void removerFuncionario(string cpf);
         Funcionario buscarFuncionario(string cpf) const;

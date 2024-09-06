@@ -4,6 +4,10 @@ using std::endl;
 
 #include "produtoDAO.hpp"
 
+ProdutoDAO& ProdutoDAO::getInstance() {
+    static ProdutoDAO instance;  // Cria a instância uma única vez
+    return instance;  // Retorna a referência à instância
+}   
 
 void ProdutoDAO::inserirProduto(const Produto& produto) {
     produtos.push_back(produto);

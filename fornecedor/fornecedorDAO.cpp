@@ -5,15 +5,11 @@ using std::endl;
 #include <vector>
 using std::vector;
 
-#include "fornecedorDAO.hpp"
+#include "fornecedorDAO.hpp" 
 
-FornecedorDAO::FornecedorDAO(){
-    Fornecedor f1(1,"Manel", "1234567890", "Manel@gmail.com", "44 9999", "Rua 1", "Sao Paulo", "SP", "12345678");
-    fornecedores.push_back(f1);
-    Fornecedor f2(2,"João", "1234567890", "rosana@gmail.com", "44 9999", "Rua 2", "Sao Paulo", "SP", "12345678");
-    fornecedores.push_back(f2);
-    Fornecedor f3(3,"Eric", "1234567890", "sabrina@gmail.com", "44 9999", "Rua 3", "Sao Paulo", "SP", "12345678");
-    fornecedores.push_back(f3);
+FornecedorDAO& FornecedorDAO::getInstance() {
+    static FornecedorDAO instance;  // Cria a instância uma única vez
+    return instance;  // Retorna a referência à instância
 }   
 
 void FornecedorDAO::cadastrarFornecedor(const Fornecedor& fornecedor) {
